@@ -16,7 +16,7 @@ fn main() {
                     match user.read(&mut buff){
                         Err(_) => break,
                         Ok(_) => {
-                            println!("{}",String::from_utf8_lossy(&buff));
+                            println!("{} |> {}", user.peer_addr().unwrap().port() ,String::from_utf8_lossy(&buff));
                         },
                     }
                 }
