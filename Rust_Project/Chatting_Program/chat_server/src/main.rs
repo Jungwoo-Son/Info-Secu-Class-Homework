@@ -20,6 +20,7 @@ fn main() {
                             println!("{} |> {}", user.peer_addr().unwrap().port() ,String::from_utf8_lossy(&buff));
                         },
                     }
+                    user.write(String::from("너가 보냄").as_bytes()).unwrap();
                 }
                 println!("{} 서버 나감", user.peer_addr().unwrap().port());
             });
