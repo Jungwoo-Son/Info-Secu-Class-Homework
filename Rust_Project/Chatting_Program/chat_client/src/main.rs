@@ -34,16 +34,15 @@ struct UiManager {
 
 impl UiManager {
     fn new() -> UiManager{
-
-        execute!(stdout(), cursor::MoveTo(0, terminal::size().unwrap().1 - 3)).unwrap();
         UiManager::print_input_box();
-        execute!(stdout(), cursor::MoveTo(2, terminal::size().unwrap().1 - 2)).unwrap();
         UiManager{
             line: 0,
         }
     }
     
     fn print_input_box() {
+        execute!(stdout(), cursor::MoveTo(0, terminal::size().unwrap().1 - 3)).unwrap();
+
         let size_x = terminal::size().unwrap().0 - 1;
         print!("┌ 입력 창");
         for _ in 0..(size_x - 10) {
@@ -61,6 +60,7 @@ impl UiManager {
             print!("─");
         } print!("┘");
         std::io::stdout().flush().unwrap();
+        execute!(stdout(), cursor::MoveTo(2, terminal::size().unwrap().1 - 2)).unwrap();
     }
 
     fn print_chat(&mut self, chat: &String) {
@@ -68,11 +68,8 @@ impl UiManager {
         execute!(stdout(), cursor::MoveTo(0, self.line)).unwrap();
         println!("{}", chat);
         if (term_y - 3) > self.line {
-            self.line += 1;
-            execute!(stdout(), cursor::MoveTo(0, term_y - 3)).unwrap();
-        }
+            self.line += 1;        }
         UiManager::print_input_box();
-        execute!(stdout(), cursor::MoveTo(2, term_y - 2)).unwrap();
     }
 }
 
