@@ -27,4 +27,9 @@ impl User {
     pub fn write(&mut self, buf: &[u8]) -> std::io::Result<usize>{
         self.stream.write(buf)
     }
+
+    pub fn try_clone(&self) -> std::io::Result<User>{
+        let stream = self.stream.try_clone()?;
+        Ok(User::new(stream))
+    }
 }

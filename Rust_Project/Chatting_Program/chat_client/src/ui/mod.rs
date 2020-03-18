@@ -47,6 +47,9 @@ impl UiManager {
         if (term_y - 3) > self.line {
             self.line += 1;
         }
+        else {
+            
+        }
         UiManager::print_input_box();
     }
 }
