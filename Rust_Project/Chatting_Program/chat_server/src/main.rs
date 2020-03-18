@@ -50,4 +50,3 @@ fn main() {
     let mut msg = String::new();
     std::io::stdin().read_line(&mut msg).unwrap();
 }
-

@@ -48,7 +48,7 @@ impl UiManager {
             self.line += 1;
         }
         else {
-            
+            execute!(stdout(), terminal::ScrollUp(1)).unwrap();
         }
         UiManager::print_input_box();
     }
