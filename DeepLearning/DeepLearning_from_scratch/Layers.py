@@ -1,5 +1,6 @@
 import numpy as np
 
+
 # 활성화 함수 레이어
 class SigmoidLayer:
     def __init__(self):
@@ -28,6 +29,7 @@ class ReLuLayer:
         dx = dout
         return dx
 
+
 # 곱셈 덧셈 레이어
 class MulLayer:
     def frontward(self, a, b):
@@ -50,3 +52,24 @@ class AddLayer:
     def backward(dout):
         return dout
 
+
+class AffineLayer:
+    def __init__(self, W, b):
+        self.W = W
+        self.b = b
+        self.x = None
+        self.dW = None
+        self.db = None
+
+    def forward(self, x):
+        self.x = x
+        out = np.dot(self.x, self.W) + self.b
+
+        return out
+
+    def backward(self, dout):
+        dx = np.dot(dout, self.W.T)
+        self.dW = np.dot(self.x.T, dout)
+        self.db = dout
+
+        return dx
